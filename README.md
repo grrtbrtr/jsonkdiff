@@ -1,7 +1,6 @@
 # jsonkdiff
 
-![Build status](https://github.com/grrtbrtr/jsonkdiff/actions/workflows/test.yml/badge.svg)
-![NPM version](https://img.shields.io/npm/v/@grrtbrtr/jsonkdiff)
+![NPM version](https://img.shields.io/npm/v/@grrtbrtr/jsonkdiff?color=blue) ![License](https://img.shields.io/github/license/grrtbrtr/jsonkdiff) ![Build](https://img.shields.io/github/actions/workflow/status/grrtbrtr/jsonkdiff/test.yml) ![Bundle size](https://img.shields.io/bundlephobia/min/@grrtbrtr/jsonkdiff)
 
 A lightweight, zero-dependency CLI tool to compare multiple JSON files and identify missing (non-common) keys.
 It generates a per-file report of unique keys to help identify schema drift.
