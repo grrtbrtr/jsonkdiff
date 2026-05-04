@@ -1,6 +1,6 @@
 {
   "name": "@grrtbrtr/jsonkdiff",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Compare multiple JSON files and find non-common keys. Generates a per-file report of unique keys to help identify schema drift.",
   "keywords": [
     "json",
