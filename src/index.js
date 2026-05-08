@@ -13,15 +13,20 @@ import { getDeepKeys } from './utils/object-utils.js';
  */
 export function computeKeyDiff(datasets) {
   const allKeys = new Set();
+
   const processedData = datasets.map(ds => {
     const keys = getDeepKeys(ds.object);
     keys.forEach(k => allKeys.add(k));
-    return { name: ds.name, keys };
+
+    return {
+      name: ds.name,
+      keySet: new Set(keys),
+    };
   });
 
   const report = {};
   for (const item of processedData) {
-    report[item.name] = [...allKeys].filter(k => !item.keys.includes(k));
+    report[item.name] = [...allKeys].filter(k => !item.keySet.has(k));
   }
   return report;
 }
