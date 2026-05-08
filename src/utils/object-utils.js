@@ -7,14 +7,17 @@
  * @returns {Array.<string>} An array of keys.
  */
 export function getDeepKeys(obj, prefix = '') {
-  let keys = [];
-  for (const key in obj) {
+  return Object.keys(obj).reduce((allKeys, key) => {
     const fullPath = prefix ? `${prefix}.${key}` : key;
-    keys.push(fullPath);
-    
-    if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) {
-      keys = keys.concat(getDeepKeys(obj[key], fullPath));
+    allKeys.push(fullPath);
+
+    if (
+      typeof obj[key] === 'object' &&
+      obj[key] !== null &&
+      !Array.isArray(obj[key])
+    ) {
+      allKeys.push(...getDeepKeys(obj[key], fullPath));
     }
-  }
-  return keys;
+    return allKeys;
+  }, []);
 }
