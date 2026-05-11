@@ -14,7 +14,7 @@ const files = process.argv.slice(2);
 
 if (files.length < 2) {
   console.log(`\n${STYLES.bold}Usage:${STYLES.reset} jsonkdiff <file1.json> <file2.json> ...`);
-  process.exit(0);
+  process.exit(1);
 }
 
 async function main() {
