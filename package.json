@@ -1,17 +1,30 @@
 {
   "name": "@grrtbrtr/jsonkdiff",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Compare multiple JSON files and find non-common keys. Generates a per-file report of unique keys to help identify schema drift.",
   "keywords": [
     "json",
     "json-keys",
+    "json-diff",
+    "json-compare",
     "json-comparison",
-    "diff",
+    "json-schema-validator",
+    "i18n-audit",
+    "i18n-checker",
+    "i18n-validator",
+    "localization-tools",
+    "localization-helper",
+    "translation-check",
     "schema",
     "schema-drift",
-    "comparison",
+    "deep-diff",
+    "recursive-compare",
+    "zero-dependencies",
     "cli",
-    "devtools"
+    "cli-tool",
+    "devtools",
+    "config-validator",
+    "deep-comparison"
   ],
   "homepage": "https://github.com/grrtbrtr/jsonkdiff#readme",
   "bugs": {
@@ -23,8 +36,14 @@
   },
   "license": "GPL-3.0-only",
   "author": "Gerrit Bertier <gerrit.bertier@gmail.com>",
+  "funding": "https://github.com/grrtbrtr",
   "type": "module",
+  "sideEffects": false,
   "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
   "bin": {
     "jsonkdiff": "bin/cli.js"
   },
