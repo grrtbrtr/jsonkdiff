@@ -5,7 +5,8 @@
 A lightweight, zero-dependency CLI tool to compare multiple JSON files and identify missing (non-common) keys.
 It generates a per-file report of unique keys to help identify schema drift.
 
-Perfect for auditing translation files, config sets, or API mocks.
+### Why jsonkdiff?
+Standard diff tools (like `git diff`) show line-by-line changes. `@grrtbrtr/jsonkdiff` focuses on **structural completeness**. It answers the question: *"I added a new key to my English translation file; did I forget to add it to the other 5 languages?"*
 
 ## Features
 
@@ -29,16 +30,44 @@ npm install -g @grrtbrtr/jsonkdiff
 jsonkdiff file1.json file2.json file3.json
 ```
 
-## Example output
+## Usage example: auditing i18n files
 
-If `en.json` has `{"auth": {"login": "Log In"}}` and `es.json` is empty, `jsonkdiff` will report:
+**file-a.json (English)**
 ```JSON
-{
-  "es.json": [
-    "auth",
-    "auth.login"
-  ]
-}
+{ "nav": { "home": "Home", "about": "About" }, "logout": "Log Out" }
+```
+
+**file-b.json (French)**
+```JSON
+{ "nav": { "home": "Accueil" } }
+```
+
+**Running:**
+```bash
+npx @grrtbrtr/jsonkdiff file-a.json file-b.json
+```
+
+**Output:**
+```
+--- JSON Key Diff Report ---
+
+File: b.json
+  × Missing key: nav.about
+  × Missing key: logout
+```
+
+## CI/CD integration
+
+`jsonkdiff` follows standard Unix exit codes, making it usable in CI/CD pipelines (GitHub Actions, GitLab CI, etc.):
+
+- **Exit code `0`**: No missing keys found (Success).
+- **Exit code `1`**: Missing keys detected or an error occurred (Failure).
+
+**Example: failing a GitHub Action if keys are missing**
+
+```yaml
+- name: Audit JSON Schemas
+  run: npx @grrtbrtr/jsonkdiff locales/en.json locales/fr.json
 ```
 
 ## License
